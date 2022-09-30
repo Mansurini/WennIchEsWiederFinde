@@ -1,2 +1,3 @@
-package Beispiel_1;public enum combatTypes {
-}
+package Beispiel_1;
+
+public enum combatTypes {MELEE,RANGED,NONE}
