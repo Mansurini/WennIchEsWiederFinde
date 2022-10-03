@@ -7,7 +7,7 @@
 package net.htlgrieskirchen.pos3.streams;
 
 import org.evosuite.runtime.annotation.EvoSuiteClassExclude;
-import org.junit.BeforeClass;
+import org.testng.annotations.BeforeClass;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.AfterClass;
