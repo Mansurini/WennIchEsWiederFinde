@@ -2,7 +2,7 @@ package net.htlgrieskirchen.pos3.streams;
 
 import java.util.Objects;
 
-public class Weapon {
+public class Weapon implements Comparable<Weapon>{
     
     private final String name;
     private final CombatType combatType;
@@ -70,6 +70,17 @@ public class Weapon {
     @Override
     public String toString() {
         return "Weapon{" + "name=" + name + ", combatType=" + combatType + ", damageType=" + damageType + ", damage=" + damage + ", speed=" + speed + ", minStrength=" + minStrength + ", value=" + value + '}';
+    }
+
+    @Override
+    public int compareTo(Weapon o) {
+        return  o.damage - damage;
+    }
+
+    static public Weapon deserilize(String line)
+    {
+        String[] geteilt = line.split(";");
+        return new Weapon(geteilt[0], CombatType.valueOf(geteilt[1]), DamageType.valueOf(geteilt[2]), Integer.parseInt(geteilt[3]), Integer.parseInt(geteilt[4]), Integer.parseInt(geteilt[5]), Integer.parseInt(geteilt[6]));
     }
 
 }
