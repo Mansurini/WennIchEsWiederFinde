@@ -1,6 +1,8 @@
 package Beispiel_1;
 
-public class weapon {
+import java.util.Objects;
+
+public class weapon implements Comparable<weapon> {
     private String name;
     private combatTypes combatType;
     private damageTypes damageType;
@@ -73,5 +75,43 @@ public class weapon {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        if(name.length() < 8)
+        {return name + "\t\t\t\tDamagetype = " + damageType ;
+        } else if (name.length() < 12) {
+            return name + "\t\t\tDamagetype = " + damageType ;
+        }else if (name.length() < 16)
+        {
+            return name + "\t\tDamagetype = " + damageType ;
+        }else {
+            return name + "\tDamagetype = " + damageType ;
+        }
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        weapon weapon = (weapon) o;
+        return damage == weapon.damage && speed == weapon.speed && strength == weapon.strength && value == weapon.value && Objects.equals(name, weapon.name) && combatType == weapon.combatType && damageType == weapon.damageType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, combatType, damageType, damage, speed, strength, value);
+    }
+    @Override
+    public int compareTo(weapon o) {
+        return  o.damage - damage;
+    }
+
+    static public weapon deserilize(String line)
+    {
+        String[] geteilt = line.split(";");
+        return new weapon(geteilt[0], combatTypes.valueOf(geteilt[1]), damageTypes.valueOf(geteilt[2]), Integer.parseInt(geteilt[3]), Integer.parseInt(geteilt[4]), Integer.parseInt(geteilt[5]), Integer.parseInt(geteilt[6]));
     }
 }
